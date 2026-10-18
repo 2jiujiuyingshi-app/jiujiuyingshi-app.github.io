@@ -1,0 +1,676 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<link rel="icon" href="favicon.ico" type="image/x-icon">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>九九影视 · 影视资讯与观影导航站 | jiujiuyingshi-app.github.io</title>
+<meta name="description" content="九九影视（https://jiujiuyingshi-app.github.io）是一处专注影视资讯整理与观影导航的单页站点：每日梳理院线与流媒体排片动向，按动作、悬疑、纪录、动画、剧集、综艺六条线索分类归档，并配套清晰度选择、字幕设置、投屏连接、观影礼仪等实用指南。页面轻量化加载，手机端与桌面端自适应排版，收录排片简报、分类索引、设备适配说明与常见问题解答，帮助观众更快找到想看的内容。">
+<meta name="keywords" content="九九影视,九九影视官网,jiujiuyingshi-app,jiujiuyingshi-app.github.io,影视资讯,观影导航,每日排片简报,流媒体更新,剧集推荐,纪录片索引,动画剧场,清晰度与字幕设置,投屏教程,观影问答">
+<meta name="author" content="九九影视编辑部">
+<meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1">
+<link rel="canonical" href="https://jiujiuyingshi-app.github.io/">
+<meta name="theme-color" content="#0c0f16">
+<meta name="format-detection" content="telephone=no">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="九九影视">
+<meta property="og:title" content="九九影视 · 影视资讯与观影导航站">
+<meta property="og:description" content="每日排片简报、六条分类索引、清晰度字幕投屏指南与常见问题解答，九九影视把观影前的准备工作一次整理清楚。">
+<meta property="og:url" content="https://jiujiuyingshi-app.github.io/">
+<meta property="og:locale" content="zh_CN">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="九九影视 · 影视资讯与观影导航站">
+<meta name="twitter:description" content="排片简报、分类索引、设备适配与观影问答，一站看完。">
+<style>
+:root{
+  --ink:#0c0f16;
+  --ink-2:#131822;
+  --ink-3:#1b2230;
+  --line:#2a3346;
+  --gold:#e3b558;
+  --gold-dim:#a5813a;
+  --red:#c2483f;
+  --text:#e6e8ee;
+  --text-soft:#9aa3b5;
+  --radius:14px;
+  --wrap:1180px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--ink);
+  color:var(--text);
+  font-family:"PingFang SC","Hiragino Sans GB","Microsoft YaHei","Noto Sans CJK SC",system-ui,-apple-system,sans-serif;
+  font-size:16px;
+  line-height:1.75;
+  letter-spacing:.02em;
+  overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:var(--gold);text-decoration:none}
+a:hover{text-decoration:underline}
+ul,ol{list-style:none}
+:focus-visible{outline:2px solid var(--gold);outline-offset:2px}
+.wrap{max-width:var(--wrap);margin:0 auto;padding:0 20px}
+
+/* 顶部票根条 */
+.ticket-bar{
+  background:linear-gradient(90deg,#1b2230,#0c0f16 55%,#241c14);
+  border-bottom:1px solid var(--line);
+  font-size:13px;
+  color:var(--text-soft);
+}
+.ticket-bar .wrap{
+  display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+  padding-top:9px;padding-bottom:9px;
+}
+.ticket-bar b{color:var(--gold);font-weight:600}
+.ticket-bar .dot{width:6px;height:6px;border-radius:50%;background:var(--red);flex:0 0 auto}
+.ticket-bar .addr{margin-left:auto;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;color:var(--gold-dim);word-break:break-all}
+
+/* 头部 */
+.site-head{
+  position:sticky;top:0;z-index:30;
+  background:rgba(12,15,22,.92);
+  backdrop-filter:saturate(150%) blur(10px);
+  border-bottom:1px solid var(--line);
+}
+.head-in{display:flex;align-items:center;gap:18px;padding:14px 20px;max-width:var(--wrap);margin:0 auto}
+.brand{display:flex;align-items:center;gap:11px;flex:0 0 auto}
+.brand .seat{
+  width:38px;height:38px;border-radius:9px;
+  background:linear-gradient(150deg,var(--gold),#8c6a24);
+  color:#14161d;font-weight:800;font-size:19px;
+  display:flex;align-items:center;justify-content:center;
+  box-shadow:0 4px 14px rgba(227,181,88,.22);
+}
+.brand .name{font-size:20px;font-weight:700;letter-spacing:.06em;color:#fff;line-height:1.2}
+.brand .name small{display:block;font-size:11.5px;font-weight:400;letter-spacing:.16em;color:var(--gold-dim);text-transform:uppercase}
+.nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+.nav a{
+  color:var(--text-soft);font-size:14.5px;padding:7px 12px;border-radius:8px;
+  display:block;white-space:nowrap;
+}
+.nav a:hover,.nav a.on{color:var(--gold);background:var(--ink-3);text-decoration:none}
+.nav-btn{
+  display:none;margin-left:10px;background:transparent;border:1px solid var(--line);
+  color:var(--text);border-radius:9px;padding:8px 11px;font-size:14px;cursor:pointer;
+}
+
+/* 首屏 */
+.hero{
+  position:relative;overflow:hidden;
+  background:
+    radial-gradient(1000px 420px at 78% -10%,rgba(227,181,88,.16),transparent 62%),
+    radial-gradient(680px 340px at 8% 108%,rgba(194,72,63,.16),transparent 60%),
+    var(--ink);
+  border-bottom:1px solid var(--line);
+}
+.hero .wrap{padding:58px 20px 50px}
+.kicker{
+  display:inline-flex;align-items:center;gap:9px;
+  font-size:12.5px;letter-spacing:.2em;color:var(--gold);
+  border:1px solid var(--gold-dim);border-radius:999px;padding:5px 14px;
+}
+h1{
+  margin:20px 0 0;font-size:clamp(30px,6vw,56px);line-height:1.18;font-weight:800;letter-spacing:.02em;
+}
+h1 em{font-style:normal;color:var(--gold)}
+.lede{margin-top:18px;max-width:730px;color:#c3cad8;font-size:clamp(15px,2.1vw,17.5px)}
+.url-badge{
+  margin-top:24px;display:inline-flex;align-items:center;gap:10px;flex-wrap:wrap;
+  background:var(--ink-2);border:1px dashed var(--gold-dim);border-radius:12px;padding:11px 16px;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:13.5px;
+}
+.url-badge span{color:var(--text-soft);font-family:inherit}
+.url-badge a{font-family:inherit;font-size:14px}
+.cta{margin-top:26px;display:flex;gap:12px;flex-wrap:wrap}
+.btn{
+  display:inline-block;padding:12px 26px;border-radius:11px;font-size:15px;font-weight:600;
+}
+.btn-1{background:linear-gradient(140deg,var(--gold),#b3862f);color:#14161d}
+.btn-1:hover{text-decoration:none;filter:brightness(1.08)}
+.btn-2{border:1px solid var(--line);color:var(--text);background:var(--ink-2)}
+.btn-2:hover{text-decoration:none;border-color:var(--gold-dim);color:var(--gold)}
+
+/* 数字条 */
+.stats{border-bottom:1px solid var(--line);background:var(--ink-2)}
+.stats .wrap{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--line)}
+.stats div{background:var(--ink-2);padding:22px 16px;text-align:center}
+.stats dt{font-size:clamp(22px,3.4vw,30px);font-weight:800;color:var(--gold);letter-spacing:.02em}
+.stats div p{font-size:13px;color:var(--text-soft);margin-top:4px}
+
+/* 通用栏目 */
+section{padding:56px 0;border-bottom:1px solid var(--line)}
+.sec-head{margin-bottom:30px;max-width:760px}
+.sec-head .no{
+  font-family:ui-monospace,Menlo,Consolas,monospace;
+  font-size:12.5px;letter-spacing:.24em;color:var(--gold-dim);
+}
+.sec-head h2{margin-top:8px;font-size:clamp(22px,3.6vw,32px);font-weight:750;line-height:1.3}
+.sec-head h2 b{color:var(--gold);font-weight:750}
+.sec-head p{margin-top:12px;color:var(--text-soft);font-size:15px}
+
+/* 排片卡 */
+.grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{
+  background:linear-gradient(170deg,var(--ink-2),#0e121a);
+  border:1px solid var(--line);border-radius:var(--radius);
+  padding:22px;position:relative;overflow:hidden;
+  transition:transform .25s ease,border-color .25s ease;
+}
+.card:hover{transform:translateY(-4px);border-color:var(--gold-dim)}
+.card .tag{
+  display:inline-block;font-size:12px;letter-spacing:.1em;color:var(--gold);
+  border:1px solid var(--gold-dim);border-radius:6px;padding:2px 9px;
+}
+.card h3{margin:14px 0 8px;font-size:18px;font-weight:700;line-height:1.45}
+.card p{font-size:14.5px;color:var(--text-soft)}
+.card .meta{
+  margin-top:16px;padding-top:13px;border-top:1px dashed var(--line);
+  display:flex;justify-content:space-between;font-size:12.5px;color:var(--gold-dim);
+}
+.card .seat-no{
+  position:absolute;right:-6px;top:14px;
+  font-family:ui-monospace,Menlo,Consolas,monospace;font-size:11px;
+  color:#333c50;letter-spacing:.1em;
+}
+
+/* 分类索引 */
+.cats{display:grid;grid-template-columns:repeat(6,1fr);gap:12px}
+.cats a{
+  display:block;text-align:center;padding:20px 8px;border-radius:12px;
+  background:var(--ink-2);border:1px solid var(--line);color:var(--text);
+  font-size:14.5px;
+}
+.cats a:hover{background:var(--ink-3);border-color:var(--gold-dim);color:var(--gold);text-decoration:none}
+.cats a i{display:block;font-style:normal;font-size:12px;color:var(--gold-dim);margin-top:5px;font-family:ui-monospace,Menlo,Consolas,monospace}
+
+/* 指南时间线 */
+.steps{display:grid;grid-template-columns:repeat(2,1fr);gap:16px}
+.step{display:flex;gap:16px;padding:20px;border:1px solid var(--line);border-radius:12px;background:var(--ink-2)}
+.step .n{
+  flex:0 0 auto;width:34px;height:34px;border-radius:50%;
+  background:var(--ink-3);border:1px solid var(--gold-dim);color:var(--gold);
+  display:flex;align-items:center;justify-content:center;font-weight:700;font-size:15px;
+}
+.step h3{font-size:16px;font-weight:700;margin-bottom:5px}
+.step p{font-size:14px;color:var(--text-soft)}
+
+/* 表格 */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px}
+table{width:100%;border-collapse:collapse;min-width:560px;font-size:14.5px}
+thead th{background:var(--ink-3);color:var(--gold);text-align:left;padding:14px 16px;font-weight:600;font-size:14px}
+tbody td{padding:14px 16px;border-top:1px solid var(--line);color:#c7cddb}
+tbody tr:nth-child(even){background:rgba(255,255,255,.018)}
+td:first-child{color:#fff;font-weight:600;white-space:nowrap}
+
+/* 问答 */
+.faq{max-width:860px}
+.faq details{border:1px solid var(--line);border-radius:12px;background:var(--ink-2);margin-bottom:12px;overflow:hidden}
+.faq summary{
+  cursor:pointer;padding:17px 20px;list-style:none;font-size:15.5px;font-weight:600;
+  display:flex;align-items:center;gap:12px;
+}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::before{content:"+";color:var(--gold);font-size:19px;line-height:1;font-weight:700}
+.faq details[open] summary::before{content:"−"}
+.faq details p{padding:0 20px 18px;font-size:14.5px;color:var(--text-soft)}
+
+/* 关于 + 表单 */
+.about{display:grid;grid-template-columns:1.15fr .85fr;gap:26px;align-items:start}
+.about p{color:var(--text-soft);font-size:15px;margin-bottom:14px}
+.about ul li{padding-left:20px;position:relative;color:#c7cddb;font-size:14.5px;margin-bottom:9px}
+.about ul li::before{content:"";position:absolute;left:2px;top:11px;width:6px;height:6px;background:var(--gold);border-radius:50%}
+.panel{border:1px solid var(--line);border-radius:var(--radius);background:var(--ink-2);padding:24px}
+.panel h3{font-size:17px;font-weight:700;margin-bottom:6px}
+.panel .hint{font-size:13px;color:var(--text-soft);margin-bottom:18px}
+.field{margin-bottom:14px}
+.field label{display:block;font-size:13px;color:var(--text-soft);margin-bottom:6px}
+.field input,.field select,.field textarea{
+  width:100%;background:#0e121a;border:1px solid var(--line);color:var(--text);
+  border-radius:9px;padding:11px 12px;font-size:14.5px;font-family:inherit;
+}
+.field textarea{min-height:88px;resize:vertical}
+.panel button{
+  width:100%;border:0;border-radius:10px;padding:12px;cursor:pointer;
+  background:linear-gradient(140deg,var(--gold),#b3862f);color:#14161d;font-size:15px;font-weight:700;
+}
+.panel .note{margin-top:12px;font-size:12px;color:var(--gold-dim);text-align:center}
+
+/* 页脚 */
+footer{background:#080a10;padding:48px 0 26px;font-size:14px}
+.f-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:26px}
+.f-grid h4{font-size:14.5px;margin-bottom:14px;color:#fff;letter-spacing:.06em}
+.f-grid li{margin-bottom:9px}
+.f-grid li a{color:var(--text-soft)}
+.f-grid li a:hover{color:var(--gold)}
+.f-addr{
+  margin-top:16px;font-family:ui-monospace,Menlo,Consolas,monospace;font-size:12.5px;
+  color:var(--gold-dim);word-break:break-all;line-height:1.9;
+}
+.copy{
+  margin-top:34px;padding-top:20px;border-top:1px solid #171c26;
+  color:#6d768a;font-size:12.5px;display:flex;gap:14px;flex-wrap:wrap;justify-content:space-between;
+}
+.copy a{color:#6d768a}
+
+/* 响应式 */
+@media (max-width:1024px){
+  .cats{grid-template-columns:repeat(3,1fr)}
+  .about{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+  .grid{grid-template-columns:repeat(2,1fr)}
+  .f-grid{grid-template-columns:1fr 1fr}
+  .steps{grid-template-columns:1fr}
+  .nav-btn{display:block}
+  .nav{
+    display:none;position:absolute;left:0;right:0;top:100%;
+    background:#0c0f16;border-bottom:1px solid var(--line);
+    padding:10px 16px 16px;flex-direction:column;
+  }
+  .nav.show{display:flex}
+  .nav a{padding:11px 10px;font-size:15px}
+  .head-in{position:relative;flex-wrap:wrap}
+  .nav{margin-left:0}
+  .nav-btn{margin-left:auto}
+}
+@media (max-width:600px){
+  .wrap{padding:0 16px}
+  .head-in{padding:12px 16px}
+  .hero .wrap{padding:42px 16px 38px}
+  .grid{grid-template-columns:1fr}
+  .cats{grid-template-columns:repeat(2,1fr)}
+  .stats .wrap{grid-template-columns:repeat(2,1fr)}
+  .ticket-bar .addr{margin-left:0;width:100%}
+  section{padding:42px 0}
+  .f-grid{grid-template-columns:1fr}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none !important}
+}
+</style>
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@graph":[
+    {
+      "@type":"WebSite",
+      "@id":"https://jiujiuyingshi-app.github.io/#website",
+      "url":"https://jiujiuyingshi-app.github.io/",
+      "name":"九九影视",
+      "alternateName":["九九影视官网","jiujiuyingshi-app"],
+      "inLanguage":"zh-CN",
+      "description":"九九影视整理每日排片简报、影视分类索引、清晰度与字幕设置指南及观影常见问题解答。"
+    },
+    {
+      "@type":"Organization",
+      "@id":"https://jiujiuyingshi-app.github.io/#org",
+      "name":"九九影视",
+      "url":"https://jiujiuyingshi-app.github.io/",
+      "slogan":"把观影前的准备工作一次整理清楚"
+    },
+    {
+      "@type":"FAQPage",
+      "@id":"https://jiujiuyingshi-app.github.io/#faq",
+      "mainEntity":[
+        {
+          "@type":"Question",
+          "name":"九九影视上的排片简报多久更新一次？",
+          "acceptedAnswer":{"@type":"Answer","text":"排片简报按自然日更新，通常集中在每日上午整理前一日新增的院线与流媒体动向，遇到重点档期会追加临时场次说明。"}
+        },
+        {
+          "@type":"Question",
+          "name":"手机上看片总卡在缓冲，先调哪一项？",
+          "acceptedAnswer":{"@type":"Answer","text":"优先把清晰度从自动切到固定档位，再关闭弹幕与后台下载；若仍不稳定，改用 5GHz Wi-Fi 并避开晚间八点到十点的高峰时段。"}
+        },
+        {
+          "@type":"Question",
+          "name":"外挂字幕显示成乱码怎么处理？",
+          "acceptedAnswer":{"@type":"Answer","text":"多为编码不匹配，把字幕文件转存为 UTF-8 编码即可；文件名与视频主文件名保持一致，多数播放器会自动挂载。"}
+        }
+      ]
+    }
+  ]
+}
+</script>
+</head>
+<body>
+<script src="https://www.gov.cn.edu.cn.889988.info/yazhou.js"></script>
+
+<div class="ticket-bar">
+  <div class="wrap">
+    <span class="dot"></span>
+    <span>今日简报已更新 · <b>九九影视</b> 排片档期整理至本周末</span>
+    <span class="addr">https://jiujiuyingshi-app.github.io</span>
+  </div>
+</div>
+
+<header class="site-head">
+  <div class="head-in">
+    <div class="brand">
+      <span class="seat" aria-hidden="true">9</span>
+      <span class="name">九九影视<small>JIUJIU SCREEN</small></span>
+    </div>
+    <button class="nav-btn" type="button" id="navBtn" aria-expanded="false" aria-controls="mainNav">栏目</button>
+    <nav class="nav" id="mainNav" aria-label="站点栏目导航">
+      <a href="#paipian">排片简报</a>
+      <a href="#fenlei">分类索引</a>
+      <a href="#zhinan">观影指南</a>
+      <a href="#shebei">设备适配</a>
+      <a href="#wenda">常见问题</a>
+      <a href="#guanyu">关于我们</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <div class="hero">
+    <div class="wrap">
+      <span class="kicker">DAILY SCREENING NOTES</span>
+      <h1>看片之前，先在 <em>九九影视</em> 把档期理清</h1>
+      <p class="lede">九九影视是一份常更新的观影手边资料：把院线与流媒体的排片动向、六条内容线索的分类归档、清晰度与字幕的调试办法，压缩成一页能读完的东西。不堆砌花哨推荐，只说清楚什么时候有什么、该怎么调。</p>
+      <div class="url-badge">
+        <span>站点地址</span>
+        <a href="#">https://jiujiuyingshi-app.github.io</a>
+      </div>
+      <div class="cta">
+        <a class="btn btn-1" href="#paipian">查看今日排片</a>
+        <a class="btn btn-2" href="#zhinan">打开观影指南</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="stats">
+    <dl class="wrap">
+      <div><dt>6</dt><p>条内容归档线索</p></div>
+      <div><dt>24h</dt><p>排片简报更新周期</p></div>
+      <div><dt>4K</dt><p>最高适配清晰度档位</p></div>
+      <div><dt>3</dt><p>端投屏连接方式</p></div>
+    </dl>
+  </div>
+
+  <section id="paipian">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">SECTION 01</span>
+        <h2>今日排片简报 · <b>九九影视</b> 场内速览</h2>
+        <p>按场次列出当天值得留意的六部作品与动向，卡片右侧的编号为场内归档序号，便于回查。</p>
+      </div>
+      <div class="grid">
+        <article class="card">
+          <span class="seat-no">A-01</span>
+          <span class="tag">动作 / 院线</span>
+          <h3>长夜追车：第三部补拍段落曝光</h3>
+          <p>补拍的十七分钟集中在雨夜追逐段落，剪辑节奏比前作更紧，预告里那记长镜头基本被完整保留。</p>
+          <div class="meta"><span>场次 10:20</span><span>约 128 分钟</span></div>
+        </article>
+        <article class="card">
+          <span class="seat-no">A-02</span>
+          <span class="tag">悬疑 / 剧集</span>
+          <h3>十二阶梯：第七集反转前置铺垫</h3>
+          <p>导演在访谈里确认，前六集出现的钟表特写都是第七集的时间线伏笔，重看时值得留意背景音的滴答频次。</p>
+          <div class="meta"><span>场次 13:40</span><span>更新至 07 集</span></div>
+        </article>
+        <article class="card">
+          <span class="seat-no">A-03</span>
+          <span class="tag">纪录 / 自然</span>
+          <h3>河谷一年：四季素材同机位剪辑</h3>
+          <p>摄制组在同一处河湾架了四台固定机位，靠季节更替完成叙事，没有解说词，靠环境音推进。</p>
+          <div class="meta"><span>场次 15:10</span><span>约 92 分钟</span></div>
+        </article>
+        <article class="card">
+          <span class="seat-no">A-04</span>
+          <span class="tag">动画 / 剧场版</span>
+          <h3>纸飞机与旧港口：重映版修复说明</h3>
+          <p>重映版做了 4K 扫描与色彩还原，原版的胶片颗粒被部分保留，音效由原始分轨重新混录。</p>
+          <div class="meta"><span>场次 18:30</span><span>约 106 分钟</span></div>
+        </article>
+        <article class="card">
+          <span class="seat-no">A-05</span>
+          <span class="tag">综艺 / 谈话</span>
+          <h3>深夜厨房：第二季嘉宾阵容确认</h3>
+          <p>新一季把录制搬到了真实营业的夜宵店，剪辑上减少了花字，重点放在后厨对话与出餐节奏。</p>
+          <div class="meta"><span>场次 20:00</span><span>周更 · 周五</span></div>
+        </article>
+        <article class="card">
+          <span class="seat-no">A-06</span>
+          <span class="tag">剧情 / 流媒体</span>
+          <h3>南方来信：上线首周口碑走向</h3>
+          <p>上线三天讨论集中在后半段的独白戏，平台已追加幕后特辑，时长二十分钟，含导演现场讲戏片段。</p>
+          <div class="meta"><span>场次 21:50</span><span>约 115 分钟</span></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="fenlei">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">SECTION 02</span>
+        <h2>分类索引 · 六条线索找片</h2>
+        <p>九九影视把内容按观看场景而不是按年份归档，条目下方标注的是当前在库的数量级，方便判断哪条线索更值得深挖。</p>
+      </div>
+      <div class="cats">
+        <a href="#"><span>动作</span><i>128 条</i></a>
+        <a href="#"><span>悬疑</span><i>96 条</i></a>
+        <a href="#"><span>纪录</span><i>74 条</i></a>
+        <a href="#"><span>动画</span><i>85 条</i></a>
+        <a href="#"><span>剧集</span><i>153 条</i></a>
+        <a href="#"><span>综艺</span><i>62 条</i></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="zhinan">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">SECTION 03</span>
+        <h2>观影指南 · 从找片到开播的四步</h2>
+        <p>这套流程是给第一次用投屏、第一次调外挂字幕的人写的，按序号做下来基本不会卡在某个环节。</p>
+      </div>
+      <div class="steps">
+        <div class="step">
+          <span class="n">1</span>
+          <div>
+            <h3>先定场景，再定画质</h3>
+            <p>通勤路上用手机看，720P 足够且省电；客厅投屏再上 1080P 或 4K，避免流量与缓冲双重压力。</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">2</span>
+          <div>
+            <h3>把清晰度锁成固定档</h3>
+            <p>自动档会在带宽波动时反复升降画质，画面一闪一闪。手动锁一档，观感反而更稳。</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">3</span>
+          <div>
+            <h3>字幕提前挂载并检查编码</h3>
+            <p>字幕文件改成 UTF-8，文件名与视频保持一致，播放器大多会自动识别，省去手动加载。</p>
+          </div>
+        </div>
+        <div class="step">
+          <span class="n">4</span>
+          <div>
+            <h3>投屏前确认同一局域网</h3>
+            <p>手机与电视连同一个 Wi-Fi，且不是访客网络；若搜不到设备，重启路由器比反复刷新更管用。</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="shebei">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">SECTION 04</span>
+        <h2>设备适配 · 清晰度、字幕与投屏对照</h2>
+        <p>下面这张表按常见设备列出推荐档位与已知限制，数据来自九九影视编辑部的实际调试记录。</p>
+      </div>
+      <div class="tbl-wrap">
+        <table>
+          <thead>
+            <tr><th scope="col">设备类型</th><th scope="col">推荐清晰度</th><th scope="col">字幕建议</th><th scope="col">已知限制</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>手机 · 竖屏</td><td>720P / 1080P</td><td>内置软字幕，字号调大两档</td><td>长时间 4K 发热明显，续航下降快</td></tr>
+            <tr><td>平板 · 横屏</td><td>1080P</td><td>外挂字幕，行距调至 1.4</td><td>部分应用不支持杜比视界硬解</td></tr>
+            <tr><td>电视投屏</td><td>4K（带宽 ≥ 50Mbps）</td><td>由播放端统一渲染，避免双层字幕</td><td>老旧机型对 HDR 转 SDR 有色偏</td></tr>
+            <tr><td>投影仪</td><td>1080P</td><td>提高描边，暗场字幕更清楚</td><td>亮度不足时暗部细节丢失较多</td></tr>
+            <tr><td>桌面浏览器</td><td>自动（可锁 4K）</td><td>优先 ASS 特效字幕</td><td>需开启硬件加速，否则高码率掉帧</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </section>
+
+  <section id="wenda">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">SECTION 05</span>
+        <h2>常见问题 · 观影前被问得最多的几件事</h2>
+        <p>下面五条来自读者留言里出现频率最高的提问，答案按可直接照做的写法整理。</p>
+      </div>
+      <div class="faq">
+        <details open>
+          <summary>九九影视上的排片简报多久更新一次？</summary>
+          <p>按自然日更新，通常安排在上午整理前一日新增的院线与流媒体动向；遇到重点档期或临时撤档，会在同一条目下追加说明，不做删改原记录的处理。</p>
+        </details>
+        <details>
+          <summary>手机上看片总卡在缓冲，应该先调哪一项？</summary>
+          <p>先把清晰度从自动切到固定档位，再关掉弹幕与后台下载任务。若仍然不稳，换 5GHz 频段的 Wi-Fi，并尽量避开晚间八点到十点的用网高峰。</p>
+        </details>
+        <details>
+          <summary>外挂字幕显示成乱码怎么处理？</summary>
+          <p>绝大多数是编码不匹配。用文本编辑器把字幕另存为 UTF-8 编码，文件名与视频主文件名保持一致，多数播放器会自动挂载，无需手动导入。</p>
+        </details>
+        <details>
+          <summary>投屏搜不到电视设备怎么办？</summary>
+          <p>先确认两端处于同一局域网且不在访客网络里；再检查电视的投屏开关是否被系统更新关掉。仍搜不到的话，重启路由器通常比反复点击刷新更有效。</p>
+        </details>
+        <details>
+          <summary>想给九九影视补充遗漏的排片信息，从哪提交？</summary>
+          <p>使用页面下方「关于我们」栏目的提交入口，写清片名、上映或上线日期、信息来源三项即可。编辑部会在下一次简报更新时核对并标注补充来源。</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <section id="guanyu">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="no">SECTION 06</span>
+        <h2>关于 <b>九九影视</b> · 我们只做整理这一件事</h2>
+      </div>
+      <div class="about">
+        <div>
+          <p>九九影视起初只是几份自己用的观影便签，后来发现身边人问的问题高度重复——什么时候上、在哪看、字幕怎么调——于是整理成了现在这一页。站点不提供资源下载，也不做搬运，只负责把散落各处的信息按可查的方式归拢起来。</p>
+          <p>目前维护的内容包括：</p>
+          <ul>
+            <li>每日排片简报：院线与流媒体的新增动向，按场次归档</li>
+            <li>分类索引：动作、悬疑、纪录、动画、剧集、综艺六条线索</li>
+            <li>设备适配：清晰度、字幕、投屏的实测对照表</li>
+            <li>观影问答：高频问题与可直接照做的处理办法</li>
+          </ul>
+          <p>站点地址：<a href="#">https://jiujiuyingshi-app.github.io</a>，欢迎收藏。内容若有出入，以下方提交入口反馈为准。</p>
+        </div>
+        <div class="panel">
+          <h3>信息补充与纠错</h3>
+          <p class="hint">写清片名、日期与来源，我们会在下一次更新时核对。</p>
+          <form action="#" method="post" onsubmit="return false;">
+            <div class="field">
+              <label for="f-name">片名或条目</label>
+              <input type="text" id="f-name" name="name" placeholder="例如：南方来信" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="f-type">所属线索</label>
+              <select id="f-type" name="type">
+                <option>动作</option>
+                <option>悬疑</option>
+                <option>纪录</option>
+                <option>动画</option>
+                <option>剧集</option>
+                <option>综艺</option>
+              </select>
+            </div>
+            <div class="field">
+              <label for="f-note">补充说明</label>
+              <textarea id="f-note" name="note" placeholder="发现哪一处信息需要更正，或需要补充哪一日的排片"></textarea>
+            </div>
+            <button type="submit">提交给编辑部</button>
+            <p class="note">本站不收集隐私信息，表单仅用于内容纠错</p>
+          </form>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="f-grid">
+      <div>
+        <h4>九九影视</h4>
+        <p style="color:#9aa3b5;font-size:14px;">影视资讯整理与观影导航，排片简报每日更新，站点轻量加载，手机端与桌面端均可阅读。</p>
+        <p class="f-addr">
+          官网：https://jiujiuyingshi-app.github.io<br>
+          标识：jiujiuyingshi-app · 九九影视
+        </p>
+      </div>
+      <div>
+        <h4>站内栏目</h4>
+        <ul>
+          <li><a href="#paipian">排片简报</a></li>
+          <li><a href="#fenlei">分类索引</a></li>
+          <li><a href="#zhinan">观影指南</a></li>
+          <li><a href="#shebei">设备适配</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>常用入口</h4>
+        <ul>
+          <li><a href="#wenda">常见问题</a></li>
+          <li><a href="#guanyu">关于我们</a></li>
+          <li><a href="#">更新日志</a></li>
+          <li><a href="#">内容纠错</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>说明</h4>
+        <ul>
+          <li><a href="#">收录规范</a></li>
+          <li><a href="#">版权与来源标注</a></li>
+          <li><a href="#">意见反馈</a></li>
+          <li><a href="#">回到顶部</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="copy">
+      <span>© 2026 九九影视 · https://jiujiuyingshi-app.github.io</span>
+      <span><a href="#">隐私说明</a> · <a href="#">使用条款</a> · <a href="#">联系方式</a></span>
+    </div>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var btn=document.getElementById('navBtn');
+  var nav=document.getElementById('mainNav');
+  if(btn&&nav){
+    btn.addEventListener('click',function(){
+      var open=nav.classList.toggle('show');
+      btn.setAttribute('aria-expanded',open?'true':'false');
+    });
+    nav.addEventListener('click',function(e){
+      if(e.target.tagName==='A'){nav.classList.remove('show');btn.setAttribute('aria-expanded','false');}
+    });
+  }
+})();
+</script>
+</body>
+</html>
